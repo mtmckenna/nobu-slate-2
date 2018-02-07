@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Box } from './Box';
 import { StyleSheet, Text, View } from 'react-native';
-export default class ViewBox extends Component {
+
+export default class DoubleBox extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Hello World!</Text>
+        {this.props.children}
       </View>
     );
   }
@@ -12,11 +14,9 @@ export default class ViewBox extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5
+    flexGrow: 2,
+    flexBasis: 0,
+    flexDirection: 'row'
   },
 
   text: {

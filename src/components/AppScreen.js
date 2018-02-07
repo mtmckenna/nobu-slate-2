@@ -13,5 +13,9 @@ export default class AppScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    marginRight: 5,
+    marginBottom: 5
+  },
 });
