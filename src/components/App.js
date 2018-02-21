@@ -8,7 +8,7 @@ export default class App extends React.Component {
   render() {
     return (
       <AppScreen>
-        <View style={styles.container}>
+        <View style={styles.titleContainer}>
           <Box>Title</Box>
         </View>
         <View style={styles.container}>
@@ -34,4 +34,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
+
+  titleContainer: {
+    flexDirection: 'row'
+  }
 });
