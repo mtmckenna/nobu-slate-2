@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default class AppScreen extends Component {
   componentDidMount() {
-    Orientation.lockToLandscape();
+    Orientation.lockToLandscapeLeft();
   }
 
   render() {
@@ -17,5 +17,5 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     marginBottom: 5
-  },
+  }
 });
