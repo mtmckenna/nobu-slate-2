@@ -35,11 +35,15 @@ export default class Box extends Component {
   }
 
   responderEnd = (event, gestureState) => {
+    let value = this.value;
+
     if (this.isSwipeUp(gestureState)) {
-      this.swipeUp();
+      value = this.swipeUpValue(value);
     } else if(this.isSwipeDown(gestureState)) {
-      this.swipeDown();
+      value = this.swipeDownValue(value);
     }
+
+    this.setState({ value: value });
   }
 
   isSwipe(gestureState) {
@@ -57,14 +61,12 @@ export default class Box extends Component {
     return false;
   }
 
-  swipeUp() {
-    const nextVal = parseInt(this.value) + 1;
-    this.setState({ value: nextVal });
+  swipeUpValue(oldValue) {
+    return parseInt(oldValue) + 1;
   }
 
-  swipeDown() {
-    const prevVal = Math.max(parseInt(this.value) - 1, 1);
-    this.setState({ value: prevVal });
+  swipeDownValue(oldValue) {
+    return Math.max(parseInt(oldValue) - 1, 1);
   }
 
   render() {
