@@ -71,11 +71,16 @@ export default class Box extends Component {
 
   render() {
     return (
-      <View style={styles.container} {...this._panResponder.panHandlers}>
+      <View
+        style={styles.container}
+        testID={this.props.testID}
+        {...this._panResponder.panHandlers}
+      >
         <Text style={styles.label}>
         {this.props.children}
         </Text>
         <TextInput
+          testID={this.props.testID + 'TextInput'}
           style={styles.text}
           adjustsFontSizeToFit={true}
           value={this.stringValue}

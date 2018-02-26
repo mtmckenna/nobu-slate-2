@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
+    "detox": "^7.1.0",
     "jest": "^22.4.2",
     "jest-react-native": "^18.0.0",
     "react-test-renderer": "16.2.0"
@@ -12,10 +13,25 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js",
+    "test:e2e": "detox test -c ios.sim.debug",
+    "test:e2e:build": "detox build"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testMatch": ["**/__tests__/**/*.js?(x)"]
+  },
+  "detox": {
+  "test-runner": "jest",
+  "runner-config": "e2e/config.json",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/nobuslate.app",
+        "build": "xcodebuild -project ios/nobuslate.xcodeproj -scheme nobuslate -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      }
+    }
   },
   "dependencies": {
     "react": "16.2.0",

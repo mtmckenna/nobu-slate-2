@@ -8,12 +8,12 @@ export default class App extends React.Component {
   render() {
     return (
       <AppScreen>
-        <View style={styles.titleContainer}>
+        <View style={styles.titleContainer} testID='title'>
           <Box>Title</Box>
         </View>
         <View style={styles.container}>
           <DoubleBox>
-            <Box>Scene</Box>
+            <Box testID='scene'>Scene</Box>
             <Box>Take</Box>
           </DoubleBox>
           <Box>Date/Time</Box>
