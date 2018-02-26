@@ -8,5 +8,5 @@ install:
 
 script:
   - npm test
-  - detox build --configuration ios.sim.release
-  - detox test --configuration ios.sim.release --cleanup
+  - detox build --configuration ios.sim.debug
+  - detox test --configuration ios.sim.debug --cleanup
