@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode8.3
+
+install:
+  - npm install -g react-native-cli
+  - npm install -g detox-cli
+
+script:
+  - npm test
+  - detox build --configuration ios.sim.release
+  - detox test --configuration ios.sim.release --cleanup
