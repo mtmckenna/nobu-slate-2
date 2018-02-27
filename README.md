@@ -1,4 +1,4 @@
-nobu-slate
+nobu-slate [![Build Status](https://travis-ci.org/mtmckenna/nobu-slate-2.svg?branch=master)](https://travis-ci.org/mtmckenna/nobu-slate-2)
 ==========
 
 No Budget Movie Slate for iOS (iPhone and iPad)
