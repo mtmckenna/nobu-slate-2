@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 const MIN_SWIPE_LENGTH = 5;
+const MATCH_REGEX = '([0-9]*)([A-Z]?)';
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 export default class Box extends Component {
 
@@ -16,7 +18,7 @@ export default class Box extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { value : 1 };
+    this.state = { value : '1' };
   }
 
   componentWillMount() {
@@ -62,11 +64,27 @@ export default class Box extends Component {
   }
 
   swipeUpValue(oldValue) {
-    return parseInt(oldValue) + 1;
+    const matches = valueMatches(oldValue);
+    let letter = letterAfterSwipe(matches[1], 1);
+    let number = matches[0];
+
+    if (letter === '') {
+      number = numberAfterSwipe(matches[0], 1);
+    }
+
+    return formattedValue(number, letter);
   }
 
   swipeDownValue(oldValue) {
-    return Math.max(parseInt(oldValue) - 1, 1);
+    const matches = valueMatches(oldValue);
+    const letter = letterAfterSwipe(matches[1], -1);
+    let number = matches[0];
+
+    if (letter === '') {
+      number = numberAfterSwipe(matches[0], -1);
+    }
+
+    return formattedValue(number, letter);
   }
 
   render() {
@@ -112,3 +130,50 @@ const styles = StyleSheet.create({
     fontSize: 100
   }
 });
+
+function numberAfterSwipe(oldNumber, direction) {
+  let number = oldNumber;
+
+  if (direction === 1) {
+    number = oldNumber + 1;
+  } else if (direction === -1) {
+    number = Math.max(oldNumber - 1, 1)
+  }
+
+  return number;
+}
+
+function letterAfterSwipe(oldLetter, direction) {
+  if (!oldLetter) return '';
+
+  let letter = oldLetter;
+
+  if (direction === 1) {
+    letter = nextLetter(oldLetter);
+  } else if (direction === -1) {
+    letter = previousLetter(oldLetter);
+  }
+
+  return letter;
+}
+
+function nextLetter(oldLetter) {
+  const letterIndex = ALPHABET.indexOf(oldLetter);
+  return (letterIndex === ALPHABET.length - 1) ? oldLetter : ALPHABET[letterIndex + 1];
+}
+
+function previousLetter(oldLetter) {
+  const letterIndex = ALPHABET.indexOf(oldLetter);
+  return (letterIndex === 0) ? oldLetter : ALPHABET[letterIndex - 1];
+}
+
+function valueMatches(value) {
+  const matches = value.toString().toUpperCase().match(MATCH_REGEX).slice(1, 3);
+  matches[0] = parseInt(matches[0]);
+  return matches;
+}
+
+function formattedValue(number, letter) {
+  return (number.toString() + letter).toUpperCase();
+}
+
