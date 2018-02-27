@@ -30,6 +30,12 @@
         "build": "xcodebuild -project ios/nobuslate.xcodeproj -scheme nobuslate -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone 7"
+      },
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/nobuslate.app",
+        "build": "xcodebuild -project ios/nobuslate.xcodeproj -scheme nobuslate -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
       }
     }
   },

@@ -2,11 +2,15 @@ language: objective-c
 osx_image: xcode8.3
 
 install:
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  - nvm install
+  - nvm use
   - npm install -g react-native-cli
   - npm install -g detox-cli
   - npm install
 
 script:
   - npm test
-  - detox build --configuration ios.sim.debug
-  - detox test --configuration ios.sim.debug --cleanup
+  - detox build --configuration ios.sim.release
+  - detox test --configuration ios.sim.release --cleanup
