@@ -2,15 +2,28 @@ import React from 'react';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
 import AppScreen from './AppScreen';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from 'react-native';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { title : 'Title' };
+  }
+
   render() {
     return (
       <AppScreen>
-        <View style={styles.titleContainer} testID='title'>
-          <Box>Title</Box>
-        </View>
+        <TextInput
+          style={styles.titleTextInput}
+          testID='titleTextInput'
+          onChangeText={(title) => this.setState({title})}
+          value={this.state.title}
+        />
         <View style={styles.container}>
           <DoubleBox>
             <Box testID='scene'>Scene</Box>
@@ -35,7 +48,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 
-  titleContainer: {
-    flexDirection: 'row'
+  titleTextInput: {
+    backgroundColor: '#000',
+    marginTop: 5,
+    marginLeft: 5,
+    color: '#fff',
+    padding: 5,
   }
 });
