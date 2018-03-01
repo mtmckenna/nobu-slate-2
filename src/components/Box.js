@@ -7,7 +7,12 @@ import {
   View
 } from 'react-native';
 
-const MIN_SWIPE_LENGTH = 5;
+import {
+  isSwipe,
+  isSwipeUp,
+  isSwipeDown
+} from '../swipe-functions';
+
 const MATCH_REGEX = '([0-9]*)([A-Z]?)';
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -23,17 +28,10 @@ export default class Box extends Component {
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
       onStartShouldSetPanResponderCapture: () => true,
-      onMoveShouldSetPanResponderCapture: this.shouldSetCapture,
       onPanResponderRelease: this.responderEnd,
       onPanResponderTerminate: this.responderEnd
     });
-  }
-
-  shouldSetCapture = (event, gestureState) => {
-    return this.isSwipe(gestureState);
   }
 
   responderEnd = (event, gestureState) => {
@@ -47,7 +45,6 @@ export default class Box extends Component {
 
     this.setState({ value: value });
   }
-
 
   swipeUpValue(oldValue) {
     return swipeValue(oldValue, 1);
@@ -100,25 +97,12 @@ const styles = StyleSheet.create({
   }
 });
 
-function isSwipe(gestureState) {
-  return Math.abs(gestureState.dx) > MIN_SWIPE_LENGTH  ||
-    Math.abs(gestureState.dy) > MIN_SWIPE_LENGTH;
-}
-
 function swipeValue(oldValue, direction) {
   const matches = valueMatches(oldValue);
   const letter = letterAfterSwipe(matches[1], direction);
   const number = letter === '' ? numberAfterSwipe(matches[0], direction) : matches[0];
 
   return formattedValue(number, letter);
-}
-
-function isSwipeUp(gestureState) {
-  return (isSwipe(gestureState) && gestureState.dy < 0) ? true : false;
-}
-
-function isSwipeDown(gestureState) {
-  return (isSwipe(gestureState) && gestureState.dy > 0) ? true : false;
 }
 
 function numberAfterSwipe(oldNumber, direction) {

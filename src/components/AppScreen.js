@@ -1,21 +1,55 @@
 import Orientation from 'react-native-orientation';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  PanResponder,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
+import { isSwipeHorizontal } from '../swipe-functions';
 
 export default class AppScreen extends Component {
+
+  get backgroundStyle() {
+    return { backgroundColor: this.props.backgroundColor };
+  }
+
+  componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onMoveShouldSetPanResponderCapture: this.shouldCapture,
+      onPanResponderRelease: this.responderEnd,
+      onPanResponderTerminate: this.responderEnd
+    });
+  }
+
   componentDidMount() {
     Orientation.lockToLandscapeLeft();
   }
 
+  shouldCapture = (event, gestureState) => {
+    return isSwipeHorizontal(gestureState);
+  }
+
+  responderEnd = (event, gestureState) => {
+    if (!isSwipeHorizontal(gestureState)) return;
+    let value = this.value;
+    this.props.mark();
+  }
+
   render() {
-    return (<View style={styles.container}>{this.props.children}</View>)
+    return (
+      <View style={[styles.container, this.backgroundStyle]} {...this._panResponder.panHandlers}>
+        {this.props.children}
+      </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginRight: 5,
-    marginBottom: 5
+    paddingRight: 5,
+    paddingBottom: 5
   }
 });
