@@ -39,52 +39,22 @@ export default class Box extends Component {
   responderEnd = (event, gestureState) => {
     let value = this.value;
 
-    if (this.isSwipeUp(gestureState)) {
+    if (isSwipeUp(gestureState)) {
       value = this.swipeUpValue(value);
-    } else if(this.isSwipeDown(gestureState)) {
+    } else if(isSwipeDown(gestureState)) {
       value = this.swipeDownValue(value);
     }
 
     this.setState({ value: value });
   }
 
-  isSwipe(gestureState) {
-    return Math.abs(gestureState.dx) > MIN_SWIPE_LENGTH  ||
-      Math.abs(gestureState.dy) > MIN_SWIPE_LENGTH;
-  }
-
-  isSwipeUp(gestureState) {
-    if (this.isSwipe(gestureState) && gestureState.dy < 0) return true;
-    return false;
-  }
-
-  isSwipeDown(gestureState) {
-    if (this.isSwipe(gestureState) && gestureState.dy > 0) return true;
-    return false;
-  }
 
   swipeUpValue(oldValue) {
-    const matches = valueMatches(oldValue);
-    let letter = letterAfterSwipe(matches[1], 1);
-    let number = matches[0];
-
-    if (letter === '') {
-      number = numberAfterSwipe(matches[0], 1);
-    }
-
-    return formattedValue(number, letter);
+    return swipeValue(oldValue, 1);
   }
 
   swipeDownValue(oldValue) {
-    const matches = valueMatches(oldValue);
-    const letter = letterAfterSwipe(matches[1], -1);
-    let number = matches[0];
-
-    if (letter === '') {
-      number = numberAfterSwipe(matches[0], -1);
-    }
-
-    return formattedValue(number, letter);
+    return swipeValue(oldValue, -1);
   }
 
   render() {
@@ -95,7 +65,7 @@ export default class Box extends Component {
         {...this._panResponder.panHandlers}
       >
         <Text style={styles.label}>
-        {this.props.children}
+          {this.props.children}
         </Text>
         <TextInput
           testID={this.props.testID + 'TextInput'}
@@ -103,8 +73,7 @@ export default class Box extends Component {
           adjustsFontSizeToFit={true}
           value={this.stringValue}
           onChangeText={(text) => this.setState({value: text})}
-        >
-        </TextInput>
+        />
       </View>
     );
   }
@@ -130,6 +99,27 @@ const styles = StyleSheet.create({
     fontSize: 100
   }
 });
+
+function isSwipe(gestureState) {
+  return Math.abs(gestureState.dx) > MIN_SWIPE_LENGTH  ||
+    Math.abs(gestureState.dy) > MIN_SWIPE_LENGTH;
+}
+
+function swipeValue(oldValue, direction) {
+  const matches = valueMatches(oldValue);
+  const letter = letterAfterSwipe(matches[1], direction);
+  const number = letter === '' ? numberAfterSwipe(matches[0], direction) : matches[0];
+
+  return formattedValue(number, letter);
+}
+
+function isSwipeUp(gestureState) {
+  return (isSwipe(gestureState) && gestureState.dy < 0) ? true : false;
+}
+
+function isSwipeDown(gestureState) {
+  return (isSwipe(gestureState) && gestureState.dy > 0) ? true : false;
+}
 
 function numberAfterSwipe(oldNumber, direction) {
   let number = oldNumber;
