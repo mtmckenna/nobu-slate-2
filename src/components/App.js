@@ -9,6 +9,8 @@ import {
   View
 } from 'react-native';
 
+import Beeper from '../beeper';
+
 const WHITE_BG = '#fff';
 const RED_BG = '#cc0000';
 const GREEN_BG = '#339933';
@@ -17,6 +19,7 @@ const BEEP_TIME = 500;
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.beeper = new Beeper();
     this.state = {
       title: 'Title',
       backgroundColor: WHITE_BG,
@@ -28,12 +31,20 @@ export default class App extends React.Component {
     if (this.state.countingDown) return;
     this.setState({ countingDown: true });
 
+    this.beeper.beep();
     this.setState(backgroundStyle(RED_BG));
-    setTimeout(() => this.setState(backgroundStyle(WHITE_BG)), 1 * BEEP_TIME);
-    setTimeout(() => this.setState(backgroundStyle(GREEN_BG)), 2 * BEEP_TIME);
-    setTimeout(() => this.setState(backgroundStyle(WHITE_BG)), 3 * BEEP_TIME);
 
-    setTimeout(() => this.setState({ countingDown: false }), 3 * BEEP_TIME);
+    setTimeout(() => this.setState(backgroundStyle(WHITE_BG)), 1 * BEEP_TIME);
+
+    setTimeout(() => {
+      this.setState(backgroundStyle(GREEN_BG))
+      this.beeper.beepFinal();
+    }, 2 * BEEP_TIME);
+
+    setTimeout(() => {
+      this.setState(backgroundStyle(WHITE_BG));
+      this.setState({ countingDown: false });
+    }, 3 * BEEP_TIME);
   }
 
   render() {

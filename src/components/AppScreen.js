@@ -15,7 +15,7 @@ export default class AppScreen extends Component {
     return { backgroundColor: this.props.backgroundColor };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this._panResponder = PanResponder.create({
       onMoveShouldSetPanResponderCapture: this.shouldCapture,
       onPanResponderRelease: this.responderEnd,

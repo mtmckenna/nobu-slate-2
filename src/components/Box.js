@@ -26,7 +26,7 @@ export default class Box extends Component {
     this.state = { value : '1' };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponderCapture: () => true,
       onPanResponderRelease: this.responderEnd,
