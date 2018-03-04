@@ -27,6 +27,8 @@ export default class App extends React.Component {
       editing: null,
       slateProps: {
         title: 'Title',
+        scene: '1',
+        take: '1'
       }
     };
   }
@@ -55,9 +57,11 @@ export default class App extends React.Component {
     this.setState({ editing: field });
   }
 
-  doneEditing = (field, value) => {
-    this.setState({ editing: false });
-    this.setState({ slateProps: { [field]: value } });
+  updateValue = (field, value) => {
+    let newState = Object.assign({}, this.state);
+    newState.editing = false;
+    newState.slateProps[field] = value;
+    this.setState(newState);
   }
 
   render() {
@@ -68,14 +72,15 @@ export default class App extends React.Component {
       component = <EditBox
         field={this.state.editing}
         value={value}
-        doneEditing={this.doneEditing}
+        doneEditing={this.updateValue}
         />;
     } else {
       component = <Slate
         backgroundColor={this.state.backgroundColor}
         edit={this.edit}
+        updateValue={this.updateValue}
         mark={this.mark}
-        slateProps={this.state.slateProps}
+        {...this.state.slateProps}
         />;
     }
 

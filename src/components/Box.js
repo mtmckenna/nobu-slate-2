@@ -10,7 +10,8 @@ import {
 import {
   isSwipe,
   isSwipeUp,
-  isSwipeDown
+  isSwipeDown,
+  isSwipeHorizontal
 } from '../swipe-functions';
 
 const MATCH_REGEX = '([0-9]*)([A-Z]?)';
@@ -18,32 +19,25 @@ const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 export default class Box extends Component {
 
-  get value() { return this.state.value; }
-  get stringValue() { return this.value.toString(); }
-
-  constructor(props) {
-    super(props);
-    this.state = { value : '1' };
-  }
-
   componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponderCapture: () => true,
       onPanResponderRelease: this.responderEnd,
-      onPanResponderTerminate: this.responderEnd
     });
   }
 
   responderEnd = (event, gestureState) => {
-    let value = this.value;
+    let value = this.props.value;
 
     if (isSwipeUp(gestureState)) {
       value = this.swipeUpValue(value);
     } else if(isSwipeDown(gestureState)) {
       value = this.swipeDownValue(value);
+    } else if(!isSwipeHorizontal(gestureState)){
+      if (this.props.onPress) this.props.onPress();
     }
 
-    this.setState({ value: value });
+    if (value != this.props.value) this.props.onUpdate(value);
   }
 
   swipeUpValue(oldValue) {
@@ -59,18 +53,9 @@ export default class Box extends Component {
       <View
         style={styles.container}
         testID={this.props.testID}
-        {...this._panResponder.panHandlers}
-      >
-        <Text style={styles.label}>
-          {this.props.children}
-        </Text>
-        <TextInput
-          testID={this.props.testID + 'TextInput'}
-          style={styles.text}
-          adjustsFontSizeToFit
-          value={this.stringValue}
-          onChangeText={(text) => this.setState({value: text})}
-        />
+        {...this._panResponder.panHandlers}>
+        <Text style={styles.label}>{this.props.label}</Text>
+        <Text style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
       </View>
     );
   }
@@ -142,6 +127,8 @@ function previousLetter(oldLetter) {
 }
 
 function valueMatches(value) {
+  if (!value) return [1, ''];
+
   const matches = value.toString().toUpperCase().match(MATCH_REGEX).slice(1, 3);
   matches[0] = parseInt(matches[0]);
   return matches;

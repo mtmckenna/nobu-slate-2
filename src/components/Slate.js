@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native';
 
+import Scene from './Scene';
+import Take from './Take';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
 import { isSwipeHorizontal } from '../swipe-functions';
@@ -40,13 +42,13 @@ export default class Slate extends Component {
         <Text
           style={styles.titleTextInput}
           testID='titleText'
-          onPress= {() => this.props.edit('title')}>
-          {this.props.slateProps.title}
+          onPress={() => this.props.edit('title')}>
+          {this.props.title}
         </Text>
         <View style={styles.row}>
           <DoubleBox>
-            <Box testID='scene'>Scene</Box>
-            <Box>Take</Box>
+            <Scene value={this.props.scene} edit={this.props.edit} updateValue={this.props.updateValue} />
+            <Take value={this.props.take} edit={this.props.edit} updateValue={this.props.updateValue} />
           </DoubleBox>
           <Box>Date/Time</Box>
         </View>
@@ -81,3 +83,11 @@ const styles = StyleSheet.create({
     padding: 5
   }
 });
+
+            /*<Box
+              testID='scene'
+              label='Scene'
+              value={this.props.scene}
+              onPress={() => this.props.edit('scene')}
+              onUpdate={(value) => this.props.updateValue('scene', value)} />
+*/
