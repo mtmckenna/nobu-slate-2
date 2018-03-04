@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Box } from './Box';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default class DoubleBox extends Component {
   render() {

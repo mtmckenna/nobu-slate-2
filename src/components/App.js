@@ -60,7 +60,7 @@ export default class App extends React.Component {
   updateValue = (field, value) => {
     let newState = Object.assign({}, this.state);
     newState.editing = false;
-    newState.slateProps[field] = value;
+    newState.slateProps[field] = value.toUpperCase();
     this.setState(newState);
   }
 
@@ -78,7 +78,7 @@ export default class App extends React.Component {
       component = <Slate
         backgroundColor={this.state.backgroundColor}
         edit={this.edit}
-        updateValue={this.updateValue}
+        onUpdate={this.updateValue}
         mark={this.mark}
         {...this.state.slateProps}
         />;

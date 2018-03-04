@@ -14,7 +14,6 @@ import DoubleBox from './DoubleBox';
 import { isSwipeHorizontal } from '../swipe-functions';
 
 export default class Slate extends Component {
-
   get backgroundStyle() {
     return { backgroundColor: this.props.backgroundColor };
   }
@@ -48,8 +47,8 @@ export default class Slate extends Component {
         </Text>
         <View style={styles.row}>
           <DoubleBox>
-            <SceneBox value={this.props.scene} edit={this.props.edit} updateValue={this.props.updateValue} />
-            <TakeBox value={this.props.take} edit={this.props.edit} updateValue={this.props.updateValue} />
+            <SceneBox value={this.props.scene} edit={this.props.edit} onSwipe={this.props.onUpdate} />
+            <TakeBox value={this.props.take} edit={this.props.edit} onSwipe={this.props.onUpdate} />
           </DoubleBox>
           <DateTimeBox />
         </View>
@@ -84,11 +83,3 @@ const styles = StyleSheet.create({
     padding: 5
   }
 });
-
-            /*<Box
-              testID='scene'
-              label='Scene'
-              value={this.props.scene}
-              onPress={() => this.props.edit('scene')}
-              onUpdate={(value) => this.props.updateValue('scene', value)} />
-*/

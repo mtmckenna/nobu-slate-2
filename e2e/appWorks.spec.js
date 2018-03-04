@@ -18,7 +18,7 @@ describe('When using the app', () => {
   });
 
   it('shows scene 1', async () => {
-    await expect(element(by.id('sceneTextInput'))).toHaveText('1');
+    await expect(element(by.id('scene'))).toHaveText('1');
   });
 
   describe('when swiping up/down on the scene', () => {
@@ -29,4 +29,6 @@ describe('When using the app', () => {
       await expect(element(by.id('sceneTextInput'))).toHaveText('1');
     });
   });
+
+  // Once https://github.com/wix/detox/issues/572 is fixed, add in a change scene/take with keyboard
 })

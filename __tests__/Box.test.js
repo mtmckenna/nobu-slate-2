@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Box from '../src/components/Box';
+import boxWithSwipe from '../src/components/boxWithSwipe';
 
 it('renders without crashing', () => {
   const rendered = renderer.create(<Box />).toJSON();
@@ -10,7 +11,8 @@ it('renders without crashing', () => {
 
 describe('when swiping', function() {
   it('correctly increases and decreases values ending with numbers', function() {
-    let box = new Box();
+    const TestBox = boxWithSwipe('test');
+    const box = new TestBox();
     expect(box.swipeUpValue('1')).toEqual('2');
     expect(box.swipeDownValue('2')).toEqual('1');
     expect(box.swipeDownValue('1')).toEqual('1');
