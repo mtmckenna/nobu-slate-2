@@ -26,7 +26,7 @@ export default class Box extends Component {
     this.state = { value : '1' };
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponderCapture: () => true,
       onPanResponderRelease: this.responderEnd,
@@ -67,7 +67,7 @@ export default class Box extends Component {
         <TextInput
           testID={this.props.testID + 'TextInput'}
           style={styles.text}
-          adjustsFontSizeToFit={true}
+          adjustsFontSizeToFit
           value={this.stringValue}
           onChangeText={(text) => this.setState({value: text})}
         />

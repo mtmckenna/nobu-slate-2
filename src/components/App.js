@@ -1,14 +1,15 @@
 import React from 'react';
-import Box from './Box';
-import DoubleBox from './DoubleBox';
-import AppScreen from './AppScreen';
 import {
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   View
 } from 'react-native';
 
+import AppScreen from './AppScreen';
+import Slate from './Slate';
+import EditBox from './EditBox';
 import Beeper from '../beeper';
 
 const WHITE_BG = '#fff';
@@ -21,9 +22,12 @@ export default class App extends React.Component {
     super(props);
     this.beeper = new Beeper();
     this.state = {
-      title: 'Title',
       backgroundColor: WHITE_BG,
-      countingDown: false
+      countingDown: false,
+      editing: null,
+      slateProps: {
+        title: 'Title',
+      }
     };
   }
 
@@ -47,33 +51,35 @@ export default class App extends React.Component {
     }, 3 * BEEP_TIME);
   }
 
+  edit = (field) => {
+    this.setState({ editing: field });
+  }
+
+  doneEditing = (field, value) => {
+    this.setState({ editing: false });
+    this.setState({ slateProps: { [field]: value } });
+  }
+
   render() {
-    return (
-      <AppScreen
+    let component = null;
+
+    if (this.state.editing) {
+      const value = this.state.slateProps[this.state.editing];
+      component = <EditBox
+        field={this.state.editing}
+        value={value}
+        doneEditing={this.doneEditing}
+        />;
+    } else {
+      component = <Slate
         backgroundColor={this.state.backgroundColor}
+        edit={this.edit}
         mark={this.mark}
-      >
-        <TextInput
-          style={styles.titleTextInput}
-          testID='titleTextInput'
-          onChangeText={(title) => this.setState({title})}
-          value={this.state.title}
-        />
-        <View style={styles.container}>
-          <DoubleBox>
-            <Box testID='scene'>Scene</Box>
-            <Box>Take</Box>
-          </DoubleBox>
-          <Box>Date/Time</Box>
-        </View>
-        <View style={styles.container}>
-          <DoubleBox>
-            <Box>Audio File</Box>
-          </DoubleBox>
-          <Box>Channels</Box>
-        </View>
-      </AppScreen>
-    );
+        slateProps={this.state.slateProps}
+        />;
+    }
+
+    return <AppScreen>{component}</AppScreen>;
   }
 }
 
@@ -81,14 +87,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row'
-  },
-
-  titleTextInput: {
-    backgroundColor: '#000',
-    marginTop: 5,
-    marginLeft: 5,
-    color: '#fff',
-    padding: 5,
   }
 });
 

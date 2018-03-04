@@ -4,15 +4,17 @@ describe('When using the app', () => {
   });
 
   it('shows title', async () => {
-    await expect(element(by.id('titleTextInput'))).toBeVisible();
+    await expect(element(by.id('titleText'))).toBeVisible();
   });
 
   it('can change the title', async() => {
-    await expect(element(by.id('titleTextInput'))).toHaveText('Title');
-    await element(by.id('titleTextInput')).tap();
-    await element(by.id('titleTextInput')).clearText();
-    await element(by.id('titleTextInput')).typeText('Handcuff Hands\n');
-    await expect(element(by.id('titleTextInput'))).toHaveText('Handcuff Hands');
+    await expect(element(by.id('scene'))).toBeVisible();
+    await expect(element(by.id('titleText'))).toHaveText('Title');
+    await element(by.id('titleText')).tap();
+    await expect(element(by.id('scene'))).toBeNotVisible(); // Want only the title box to be visible
+    await element(by.id('editBox')).clearText();
+    await element(by.id('editBox')).typeText('Handcuff Hands\n');
+    await expect(element(by.id('titleText'))).toHaveText('Handcuff Hands');
   });
 
   it('shows scene 1', async () => {
