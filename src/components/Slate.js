@@ -6,8 +6,9 @@ import {
   View
 } from 'react-native';
 
-import Scene from './Scene';
-import Take from './Take';
+import SceneBox from './SceneBox';
+import TakeBox from './TakeBox';
+import DateTimeBox from './DateTimeBox';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
 import { isSwipeHorizontal } from '../swipe-functions';
@@ -47,10 +48,10 @@ export default class Slate extends Component {
         </Text>
         <View style={styles.row}>
           <DoubleBox>
-            <Scene value={this.props.scene} edit={this.props.edit} updateValue={this.props.updateValue} />
-            <Take value={this.props.take} edit={this.props.edit} updateValue={this.props.updateValue} />
+            <SceneBox value={this.props.scene} edit={this.props.edit} updateValue={this.props.updateValue} />
+            <TakeBox value={this.props.take} edit={this.props.edit} updateValue={this.props.updateValue} />
           </DoubleBox>
-          <Box>Date/Time</Box>
+          <DateTimeBox />
         </View>
         <View style={styles.row}>
           <DoubleBox>

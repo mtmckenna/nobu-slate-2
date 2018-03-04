@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from './Box';
 
-export default function Scene(props) {
+export default function SceneBox(props) {
   return (<Box
   testID='scene'
   label='Scene'
