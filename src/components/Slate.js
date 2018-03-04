@@ -8,6 +8,7 @@ import {
 
 import SceneBox from './SceneBox';
 import TakeBox from './TakeBox';
+import AudioFileBox from './AudioFileBox';
 import DateTimeBox from './DateTimeBox';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
@@ -52,9 +53,9 @@ export default class Slate extends Component {
           </DoubleBox>
           <DateTimeBox />
         </View>
-        <View style={styles.row}>
+        <View style={styles.shortRow}>
           <DoubleBox>
-            <Box>Audio File</Box>
+            <AudioFileBox value={this.props.audioFile} edit={this.props.edit} onSwipe={this.props.onUpdate} />
           </DoubleBox>
           <Box>Channels</Box>
         </View>
@@ -71,6 +72,11 @@ const styles = StyleSheet.create({
   },
 
   row: {
+    flex: 2,
+    flexDirection: 'row'
+  },
+
+  shortRow: {
     flex: 1,
     flexDirection: 'row'
   },

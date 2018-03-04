@@ -28,7 +28,8 @@ export default class App extends React.Component {
       slateProps: {
         title: 'Title',
         scene: '1',
-        take: '1'
+        take: '1',
+        audioFile: '001'
       }
     };
   }
@@ -60,7 +61,7 @@ export default class App extends React.Component {
   updateValue = (field, value) => {
     let newState = Object.assign({}, this.state);
     newState.editing = false;
-    newState.slateProps[field] = value.toUpperCase();
+    newState.slateProps[field] = value.toUpperCase().trim();
     this.setState(newState);
   }
 
