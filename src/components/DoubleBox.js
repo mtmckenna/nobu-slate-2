@@ -16,9 +16,5 @@ const styles = StyleSheet.create({
     flexGrow: 2,
     flexBasis: 0,
     flexDirection: 'row'
-  },
-
-  text: {
-    color: '#fff'
   }
 });

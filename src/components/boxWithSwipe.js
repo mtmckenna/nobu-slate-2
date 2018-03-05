@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { PanResponder, StyleSheet, View } from 'react-native';
+import {
+  PanResponder,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
 import Box from './Box';
 const leftPad = require('left-pad');
 
@@ -47,12 +53,9 @@ export default function boxWithSwipe(field) {
     render() {
       return (
         <View style={styles.container} {...this._panResponder.panHandlers}>
-          <Box
-            testID={field}
-            label={stringWithFirstLetterCapitalized(field)}
-            value={this.props.value}
-            {...this.props}
-            />
+          <Box testID={field} label={stringWithFirstLetterCapitalized(field)} {...this.props}>
+            <Text style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
+          </Box>
         </View>
       );
     }
@@ -62,6 +65,13 @@ export default function boxWithSwipe(field) {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+
+  text: {
+    flex: 1,
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 250
   }
 });
 

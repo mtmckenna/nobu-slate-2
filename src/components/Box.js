@@ -11,7 +11,9 @@ export default class Box extends Component {
     return (
       <View style={styles.container} testID={this.props.testID}>
         <Text style={styles.label}>{this.props.label}</Text>
-        <Text style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
+        <View style={styles.textContainer}>
+          {this.props.children}
+        </View>
       </View>
     );
   }
@@ -30,11 +32,8 @@ const styles = StyleSheet.create({
     padding: 5
   },
 
-  text: {
+  textContainer: {
     flex: 1,
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 100
   }
 });
 

@@ -57,7 +57,7 @@ export default class Slate extends Component {
           <DoubleBox>
             <AudioFileBox value={this.props.audioFile} edit={this.props.edit} onSwipe={this.props.onUpdate} />
           </DoubleBox>
-          <Box>Channels</Box>
+          <Box></Box>
         </View>
       </View>
     );
