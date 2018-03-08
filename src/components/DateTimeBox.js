@@ -26,7 +26,7 @@ export default class DateTimeBox extends Component {
 
   render() {
     return (
-      <Box testID='datetime' label='Date/Time'>
+      <Box testID='dateTime' label='Date/Time'>
         <View style={styles.textContainer}>
           <Text style={styles.text} adjustsFontSizeToFit>{formattedDate(this.state.date)}</Text>
           <Text style={styles.text} adjustsFontSizeToFit>{formattedTime(this.state.date)}</Text>
@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     color: '#fff',
-    textAlign: 'center',
+    textAlign: 'left',
     textAlignVertical:'center',
-    fontSize: 30
+    fontSize: 30,
+    padding: 5
   }
 });
 

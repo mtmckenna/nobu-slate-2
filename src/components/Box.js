@@ -9,7 +9,7 @@ import {
 export default class Box extends Component {
   render() {
     return (
-      <View style={styles.container} testID={this.props.testID}>
+      <View style={[styles.container, this.props.style]} testID={this.props.testID}>
         <Text style={styles.label}>{this.props.label}</Text>
         <View style={styles.textContainer}>
           {this.props.children}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
 
   textContainer: {
-    flex: 1,
+    flex: 1
   }
 });
 

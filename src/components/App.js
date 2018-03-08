@@ -29,7 +29,9 @@ export default class App extends React.Component {
         title: 'Title',
         scene: '1',
         take: '1',
-        audioFile: '001'
+        audioFile: '001',
+        audioChannelL: 'Lav',
+        audioChannelR: 'Boom'
       }
     };
   }
@@ -61,7 +63,7 @@ export default class App extends React.Component {
   updateValue = (field, value) => {
     let newState = Object.assign({}, this.state);
     newState.editing = false;
-    newState.slateProps[field] = value.toUpperCase().trim();
+    newState.slateProps[field] = value.trim();
     this.setState(newState);
   }
 

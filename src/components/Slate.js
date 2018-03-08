@@ -9,7 +9,9 @@ import {
 import SceneBox from './SceneBox';
 import TakeBox from './TakeBox';
 import AudioFileBox from './AudioFileBox';
+import AudioChannelsBox from './AudioChannelsBox';
 import DateTimeBox from './DateTimeBox';
+import TitleView from './TitleView';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
 import { isSwipeHorizontal } from '../swipe-functions';
@@ -40,12 +42,7 @@ export default class Slate extends Component {
   render() {
     return (
       <View style={[styles.container, this.backgroundStyle]} {...this._panResponder.panHandlers}>
-        <Text
-          style={styles.titleTextInput}
-          testID='titleText'
-          onPress={() => this.props.edit('title')}>
-          {this.props.title}
-        </Text>
+        <TitleView onPress={this.props.edit}>{this.props.title}</TitleView>
         <View style={styles.row}>
           <DoubleBox>
             <SceneBox value={this.props.scene} edit={this.props.edit} onSwipe={this.props.onUpdate} />
@@ -57,7 +54,7 @@ export default class Slate extends Component {
           <DoubleBox>
             <AudioFileBox value={this.props.audioFile} edit={this.props.edit} onSwipe={this.props.onUpdate} />
           </DoubleBox>
-          <Box></Box>
+          <AudioChannelsBox onPress={this.props.edit} left={this.props.audioChannelL} right={this.props.audioChannelR} />
         </View>
       </View>
     );
