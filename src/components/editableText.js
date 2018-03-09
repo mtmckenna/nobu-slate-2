@@ -6,7 +6,7 @@ export default function editableText(field) {
     render() {
       return (
         <Text
-        style={styles.text}
+        style={[styles.text, this.props.style]}
         tesstID={field + 'Text'}
         onPress={() => this.props.onPress(field)}
         adjustsFontSizeToFit

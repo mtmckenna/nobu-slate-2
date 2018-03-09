@@ -11,7 +11,7 @@ import TakeBox from './TakeBox';
 import AudioFileBox from './AudioFileBox';
 import AudioChannelsBox from './AudioChannelsBox';
 import DateTimeBox from './DateTimeBox';
-import TitleView from './TitleView';
+import Title from './Title';
 import Box from './Box';
 import DoubleBox from './DoubleBox';
 import { isSwipeHorizontal } from '../swipe-functions';
@@ -42,7 +42,7 @@ export default class Slate extends Component {
   render() {
     return (
       <View style={[styles.container, this.backgroundStyle]} {...this._panResponder.panHandlers}>
-        <TitleView onPress={this.props.edit}>{this.props.title}</TitleView>
+        <Title onPress={this.props.edit}>{this.props.title}</Title>
         <View style={styles.row}>
           <DoubleBox>
             <SceneBox value={this.props.scene} edit={this.props.edit} onSwipe={this.props.onUpdate} />
