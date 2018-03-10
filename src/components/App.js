@@ -4,6 +4,7 @@ import AppScreen from './AppScreen';
 import Slate from './Slate';
 import EditBox from './EditBox';
 import Beeper from '../beeper';
+import { saveSlateProps, loadSlateProps } from '../slate-storage';
 import {
   GREEN,
   RED,
@@ -21,14 +22,21 @@ export default class App extends React.Component {
       countingDown: false,
       editing: null,
       slateProps: {
-        title: 'Title',
-        scene: '1',
-        take: '1',
-        audioFile: '001',
-        audioChannelL: 'Lav',
-        audioChannelR: 'Boom'
+        title: '',
+        scene: '',
+        take: '',
+        audioFile: '',
+        audioChannelL: '',
+        audioChannelR: ''
       }
     };
+  }
+
+  async componentDidMount() {
+    const slateProps = await loadSlateProps();
+    const newState = Object.assign({}, this.state);
+    newState.slateProps = slateProps;
+    this.setState(newState);
   }
 
   mark = () => {
@@ -59,7 +67,7 @@ export default class App extends React.Component {
     const newState = Object.assign({}, this.state);
     newState.editing = false;
     newState.slateProps[field] = value.trim();
-    this.setState(newState);
+    this.setState(newState, () => saveSlateProps(newState.slateProps));
   }
 
   render() {
