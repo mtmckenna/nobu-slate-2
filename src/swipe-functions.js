@@ -1,7 +1,7 @@
 const leftPad = require('left-pad');
 
 const MIN_VERTICAL_SWIPE_LENGTH = 5;
-const MIN_HORIZONTAL_SWIPE_LENGTH = 15;
+const MIN_HORIZONTAL_SWIPE_LENGTH = 25;
 const MATCH_REGEX = '([0-9]*)([A-Z]?)';
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
