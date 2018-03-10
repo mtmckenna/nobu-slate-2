@@ -1,34 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
-  TextInput,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
-export default class Box extends Component {
-  render() {
-    return (
-      <View style={[styles.container, this.props.style]} testID={this.props.testID}>
-        <Text style={styles.label}>{this.props.label}</Text>
-        <View style={styles.textContainer}>
-          {this.props.children}
-        </View>
+import { BLACK, WHITE } from '../colors';
+
+export default function Box(props) {
+  return (
+    <View style={styles.container} testID={props.testID}>
+      <Text style={styles.label}>{props.label}</Text>
+      <View style={styles.textContainer}>
+        {props.children}
       </View>
-    );
-  }
+    </View>
+  );
 }
+
+Box.propTypes = {
+  testID: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: BLACK,
     marginTop: 5,
     marginLeft: 5
   },
 
   label: {
-    color: '#fff',
+    color: WHITE,
     padding: 5
   },
 

@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
-  Text,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Box from './Box';
-import AudioChannelLeft from './AudioChannelLeft';
-import AudioChannelRight from './AudioChannelRight';
+import AudioChannel from './AudioChannel';
 
-export default class AudioChannelsBox extends Component {
-  render() {
-    return (
-      <Box testID='audioChannels' label='Audio Channels'>
-          <View style={styles.audioRow}>
-            <AudioChannelLeft onPress={this.props.onPress}>L: {this.props.left}</AudioChannelLeft>
-          </View>
-          <View style={styles.audioRow}>
-            <AudioChannelRight onPress={this.props.onPress}>R: {this.props.right}</AudioChannelRight>
-          </View>
-      </Box>
-    );
-  }
+export default function AudioChannelsBox(props) {
+  return (
+    <Box testID="audioChannels" label="Audio Channels">
+      <View style={styles.audioRow}>
+        <AudioChannel field="audioChannelL" onPress={props.onPress}>L: {props.left}</AudioChannel>
+      </View>
+      <View style={styles.audioRow}>
+        <AudioChannel field="audioChannelR" onPress={props.onPress}>R: {props.right}</AudioChannel>
+      </View>
+    </Box>
+  );
 }
+
+AudioChannelsBox.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  left: PropTypes.string.isRequired,
+  right: PropTypes.string.isRequired,
+};
 
 const styles = StyleSheet.create({
   audioRow: {

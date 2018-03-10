@@ -21,6 +21,6 @@ export default class Beeper {
 
 function preloadAudio(path) {
   return new Sound(path, Sound.MAIN_BUNDLE, (error) => {
-    if (error) console.log('failed to load the sound', error);
+    if (error) console.error('failed to load the sound', error);
   });
 }

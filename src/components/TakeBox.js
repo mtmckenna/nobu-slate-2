@@ -1,4 +1,3 @@
-import React from 'react';
-import boxWithSwipe from './boxWithSwipe';
+import BoxWithSwipe from './BoxWithSwipe';
 
-export default TakeBox = boxWithSwipe('take');
+export default BoxWithSwipe('take');

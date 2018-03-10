@@ -14,5 +14,6 @@ install:
 
 script:
   - npm test
+  - npm run lint
   - detox build --configuration ios.sim.debug
   - detox test --configuration ios.sim.debug --cleanup

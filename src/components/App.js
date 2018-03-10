@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View
-} from 'react-native';
 
 import AppScreen from './AppScreen';
 import Slate from './Slate';
 import EditBox from './EditBox';
 import Beeper from '../beeper';
+import {
+  GREEN,
+  RED,
+  WHITE
+} from '../colors';
 
-const WHITE_BG = '#fff';
-const RED_BG = '#cc0000';
-const GREEN_BG = '#339933';
 const BEEP_TIME = 500;
 
 export default class App extends React.Component {
@@ -22,7 +17,7 @@ export default class App extends React.Component {
     super(props);
     this.beeper = new Beeper();
     this.state = {
-      backgroundColor: WHITE_BG,
+      backgroundColor: WHITE,
       countingDown: false,
       editing: null,
       slateProps: {
@@ -41,17 +36,17 @@ export default class App extends React.Component {
     this.setState({ countingDown: true });
 
     this.beeper.beep();
-    this.setState(backgroundStyle(RED_BG));
+    this.setState(backgroundStyle(RED));
 
-    setTimeout(() => this.setState(backgroundStyle(WHITE_BG)), 1 * BEEP_TIME);
+    setTimeout(() => this.setState(backgroundStyle(WHITE)), 1 * BEEP_TIME);
 
     setTimeout(() => {
-      this.setState(backgroundStyle(GREEN_BG))
+      this.setState(backgroundStyle(GREEN));
       this.beeper.beepFinal();
     }, 2 * BEEP_TIME);
 
     setTimeout(() => {
-      this.setState(backgroundStyle(WHITE_BG));
+      this.setState(backgroundStyle(WHITE));
       this.setState({ countingDown: false });
     }, 3 * BEEP_TIME);
   }
@@ -61,7 +56,7 @@ export default class App extends React.Component {
   }
 
   updateValue = (field, value) => {
-    let newState = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.state);
     newState.editing = false;
     newState.slateProps[field] = value.trim();
     this.setState(newState);
@@ -72,31 +67,24 @@ export default class App extends React.Component {
 
     if (this.state.editing) {
       const value = this.state.slateProps[this.state.editing];
-      component = <EditBox
+      component = (<EditBox
         field={this.state.editing}
         value={value}
         doneEditing={this.updateValue}
-        />;
+      />);
     } else {
-      component = <Slate
+      component = (<Slate
         backgroundColor={this.state.backgroundColor}
         edit={this.edit}
         onUpdate={this.updateValue}
         mark={this.mark}
         {...this.state.slateProps}
-        />;
+      />);
     }
 
     return <AppScreen>{component}</AppScreen>;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row'
-  }
-});
 
 function backgroundStyle(color) {
   return { backgroundColor: color };

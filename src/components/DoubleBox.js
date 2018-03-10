@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 
-export default class DoubleBox extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        {this.props.children}
-      </View>
-    );
-  }
+export default function DoubleBox(props) {
+  return <View style={styles.container}>{props.children}</View>;
 }
+
+DoubleBox.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {

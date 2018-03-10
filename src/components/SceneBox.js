@@ -1,5 +1,4 @@
-import React from 'react';
-import boxWithSwipe from './boxWithSwipe';
+import BoxWithSwipe from './BoxWithSwipe';
 
-export default SceneBox = boxWithSwipe('scene');
+export default BoxWithSwipe('scene');
 

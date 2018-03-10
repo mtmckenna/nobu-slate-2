@@ -5,22 +5,21 @@ import {
   Text,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Box from './Box';
-const leftPad = require('left-pad');
-
 import {
-  isSwipe,
   isSwipeUp,
   isSwipeDown,
-  isSwipeHorizontal
+  isSwipeHorizontal,
+  swipeUpValue,
+  swipeDownValue
 } from '../swipe-functions';
 
-const MATCH_REGEX = '([0-9]*)([A-Z]?)';
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+import { WHITE } from '../colors';
 
-export default function boxWithSwipe(field) {
-  return class extends Component {
+export default function BoxWithSwipeWrapper(field) {
+  const BoxWithSwipe = class extends Component {
     componentWillMount() {
       this._panResponder = PanResponder.create({
         onStartShouldSetPanResponderCapture: () => true,
@@ -29,25 +28,17 @@ export default function boxWithSwipe(field) {
     }
 
     responderEnd = (event, gestureState) => {
-      let value = this.props.value;
+      let { value } = this.props;
 
       if (isSwipeUp(gestureState)) {
-        value = this.swipeUpValue(value);
-      } else if(isSwipeDown(gestureState)) {
-        value = this.swipeDownValue(value);
-      } else if(!isSwipeHorizontal(gestureState)){
+        value = swipeUpValue(value);
+      } else if (isSwipeDown(gestureState)) {
+        value = swipeDownValue(value);
+      } else if (!isSwipeHorizontal(gestureState)) {
         this.props.edit(field);
       }
 
-      if (value != this.props.value) this.props.onSwipe(field, value);
-    }
-
-    swipeUpValue(oldValue) {
-      return swipeValue(oldValue, 1);
-    }
-
-    swipeDownValue(oldValue) {
-      return swipeValue(oldValue, -1);
+      if (value !== this.props.value) this.props.onSwipe(field, value);
     }
 
     render() {
@@ -60,7 +51,16 @@ export default function boxWithSwipe(field) {
       );
     }
   };
+
+  BoxWithSwipe.propTypes = {
+    edit: PropTypes.func.isRequired,
+    onSwipe: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  };
+
+  return BoxWithSwipe;
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -69,71 +69,11 @@ const styles = StyleSheet.create({
 
   text: {
     flex: 1,
-    color: '#fff',
+    color: WHITE,
     textAlign: 'center',
     fontSize: 250
   }
 });
-
-function swipeValue(oldValue, direction) {
-  const matches = valueMatches(oldValue);
-  const letter = letterAfterSwipe(matches[1], direction);
-  const number = letter === '' ? numberAfterSwipe(matches[0], direction) : matches[0];
-  const numberLength = matches[2];
-
-  return formattedValue(number, letter, numberLength);
-}
-
-function numberAfterSwipe(oldNumber, direction) {
-  let number = oldNumber;
-  const numberLength = number.toString().length;
-
-  if (direction === 1) {
-    number = oldNumber + 1;
-  } else if (direction === -1) {
-    number = Math.max(oldNumber - 1, 1)
-  }
-
-  return number;
-}
-
-function letterAfterSwipe(oldLetter, direction) {
-  if (!oldLetter) return '';
-
-  let letter = oldLetter;
-
-  if (direction === 1) {
-    letter = nextLetter(oldLetter);
-  } else if (direction === -1) {
-    letter = previousLetter(oldLetter);
-  }
-
-  return letter;
-}
-
-function nextLetter(oldLetter) {
-  const letterIndex = ALPHABET.indexOf(oldLetter);
-  return (letterIndex === ALPHABET.length - 1) ? oldLetter : ALPHABET[letterIndex + 1];
-}
-
-function previousLetter(oldLetter) {
-  const letterIndex = ALPHABET.indexOf(oldLetter);
-  return (letterIndex === 0) ? oldLetter : ALPHABET[letterIndex - 1];
-}
-
-function valueMatches(value) {
-  if (!value) return [1, ''];
-
-  const matches = value.toString().toUpperCase().match(MATCH_REGEX).slice(1, 3);
-  matches[2] = matches[0].length;
-  matches[0] = parseInt(matches[0]);
-  return matches;
-}
-
-function formattedValue(number, letter, numberLength) {
-  const paddedNumber = leftPad(number.toString(), numberLength, '0');
-  return (paddedNumber + letter).toUpperCase();
-}
 
 function stringWithFirstLetterCapitalized(string) {
   const splitString = string.split(/(?=[A-Z])/).join(' ');

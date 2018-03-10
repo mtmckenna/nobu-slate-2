@@ -1,29 +1,33 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
-import EditableText from './EditableText';
-import { BLACK } from '../colors';
 
-export default function Title(props) {
-  const field = 'title';
+import EditableText from './EditableText';
+
+export default function AudioChannel(props) {
   return (
     <View style={styles.container}>
-      <EditableText onPress={props.onPress} field={field}>{props.children}</EditableText>
+      <EditableText
+        onPress={props.onPress}
+        field={props.field}
+        adjustsFontSizeToFit
+      >
+        {props.children}
+      </EditableText>
     </View>
   );
 }
 
-Title.propTypes = {
+AudioChannel.propTypes = {
   onPress: PropTypes.func.isRequired,
+  field: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: BLACK,
-    marginTop: 5,
-    marginLeft: 5,
     padding: 5,
-    minHeight: '10%'
-  },
+    flex: 1
+  }
 });
+
