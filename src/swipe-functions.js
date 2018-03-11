@@ -1,7 +1,7 @@
 const leftPad = require('left-pad');
 
-const MIN_VERTICAL_SWIPE_LENGTH = 3;
-const MIN_HORIZONTAL_SWIPE_LENGTH = 25;
+const MIN_VERTICAL_SWIPE_LENGTH = 5;
+const MIN_HORIZONTAL_SWIPE_LENGTH = 30;
 const MATCH_REGEX = '([0-9]*)([A-Z]?)';
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -11,11 +11,17 @@ function isSwipe(gestureState) {
 }
 
 function isSwipeUp(gestureState) {
-  return !!((isSwipe(gestureState) && gestureState.dy < MIN_VERTICAL_SWIPE_LENGTH));
+  const direction = Math.sign(gestureState.dy);
+  return !!(isSwipeVertical(gestureState) && direction === -1);
 }
 
 function isSwipeDown(gestureState) {
-  return !!((isSwipe(gestureState) && gestureState.dy > MIN_VERTICAL_SWIPE_LENGTH));
+  const direction = Math.sign(gestureState.dy);
+  return !!(isSwipeVertical(gestureState) && direction === 1);
+}
+
+function isSwipeVertical(gestureState) {
+  return !!((isSwipe(gestureState) && Math.abs(gestureState.dy) > MIN_VERTICAL_SWIPE_LENGTH));
 }
 
 function isSwipeHorizontal(gestureState) {
