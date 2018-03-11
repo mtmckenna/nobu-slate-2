@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: WHITE,
     textAlign: 'center',
-    fontSize: 250
+    fontSize: 60
   }
 });
 
