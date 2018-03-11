@@ -23,8 +23,8 @@ export default function BoxWithSwipeWrapper(field) {
     componentWillMount() {
       this._panResponder = PanResponder.create({
         onStartShouldSetPanResponderCapture: () => true,
-        onPanResponderRelease: this.responderEnd,
-        onPanResponderTerminate: this.responderEnd
+        onMoveShouldSetPanResponderCapture: () => true,
+        onPanResponderRelease: this.responderEnd
       });
     }
 

@@ -1,13 +1,13 @@
 const leftPad = require('left-pad');
 
-const MIN_VERTICAL_SWIPE_LENGTH = 5;
+const MIN_VERTICAL_SWIPE_LENGTH = 3;
 const MIN_HORIZONTAL_SWIPE_LENGTH = 25;
 const MATCH_REGEX = '([0-9]*)([A-Z]?)';
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 function isSwipe(gestureState) {
-  return Math.abs(gestureState.dx) > MIN_VERTICAL_SWIPE_LENGTH ||
-    Math.abs(gestureState.dy) > MIN_HORIZONTAL_SWIPE_LENGTH;
+  return Math.abs(gestureState.dx) > MIN_HORIZONTAL_SWIPE_LENGTH ||
+    Math.abs(gestureState.dy) > MIN_VERTICAL_SWIPE_LENGTH;
 }
 
 function isSwipeUp(gestureState) {
