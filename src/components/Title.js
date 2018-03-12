@@ -7,7 +7,7 @@ import { BLACK } from '../colors';
 export default function Title(props) {
   const field = 'title';
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={field}>
       <EditableText onPress={props.onPress} field={field}>{props.children}</EditableText>
     </View>
   );

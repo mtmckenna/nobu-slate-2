@@ -7,7 +7,7 @@ export default function EditableText(props) {
   return (
     <Text
       style={styles.text}
-      tesstID={`${props.field}Text`}
+      testID={`${props.field}Text`}
       onPress={() => props.onPress(props.field)}
       adjustsFontSizeToFit
     >

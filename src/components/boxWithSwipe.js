@@ -46,7 +46,7 @@ export default function BoxWithSwipeWrapper(field) {
       return (
         <View style={styles.container} {...this._panResponder.panHandlers}>
           <Box testID={field} label={stringWithFirstLetterCapitalized(field)} {...this.props}>
-            <Text style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
+            <Text testID={`${field}Text`}style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
           </Box>
         </View>
       );
