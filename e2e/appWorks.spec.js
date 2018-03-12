@@ -29,6 +29,4 @@ describe('When using the app', () => {
       await expect(element(by.id('sceneText'))).toHaveText('1');
     });
   });
-
-  // Once https://github.com/wix/detox/issues/572 is fixed, add in a change scene/take with keyboard
 })
