@@ -1,7 +1,7 @@
 const Sound = require('react-native-sound');
 
-const DEFAULT_BEEP_PATH = 'audio/beep.wav';
-const DEFAULT_BEEP_FINAL_PATH = 'audio/beep-final.wav';
+const DEFAULT_BEEP_PATH = 'beep.wav';
+const DEFAULT_BEEP_FINAL_PATH = 'beep_final.wav';
 
 export default class Beeper {
   constructor() {
@@ -11,7 +11,13 @@ export default class Beeper {
   }
 
   beep() {
-    this.beepAudio.play();
+    this.beepAudio.play((success) => {
+        if (!success) {
+          console.error('playback failed due to audio decoding errors');
+          this.beepAudio.reset();
+        }
+      }
+    );
   }
 
   beepFinal() {
