@@ -12,12 +12,10 @@ export default class Beeper {
 
   beep() {
     this.beepAudio.play((success) => {
-        if (!success) {
-          console.error('playback failed due to audio decoding errors');
-          this.beepAudio.reset();
-        }
-      }
-    );
+      if (success) return;
+      console.error('playback failed due to audio decoding errors');
+      this.beepAudio.reset();
+    });
   }
 
   beepFinal() {
