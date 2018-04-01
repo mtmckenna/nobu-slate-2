@@ -19,7 +19,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js",
+    "test": "node node_modules/jest/bin/jest.js --forceExit",
     "test:e2e": "detox test -c ios.sim.debug",
     "test:e2e:build": "detox build",
     "lint": "./node_modules/.bin/eslint src/*.js src/**/*.js"
