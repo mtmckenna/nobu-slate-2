@@ -41,6 +41,8 @@
 		AC8AD50B2049A9FA00B24553 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC8AD5092049A9FA00B24553 /* audio */; };
 		AC8AD50C2049A9FA00B24553 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC8AD5092049A9FA00B24553 /* audio */; };
 		AC8AD50D2049A9FA00B24553 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC8AD5092049A9FA00B24553 /* audio */; };
+		AC9D75D4206A945A00E6626B /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AC9D75D3206A945A00E6626B /* assets */; };
+		AC9D75D5206A945A00E6626B /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AC9D75D3206A945A00E6626B /* assets */; };
 		ACC8B28A204B2AC700AD95C5 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC8B289204B2A9300AD95C5 /* libRNSound.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		FF3FFAFE7EBB48A389063E46 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55931722ECB3487D829B911F /* libRCTOrientation.a */; };
@@ -366,6 +368,7 @@
 		AC6F067A2059C8190004C94A /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep.wav; path = ../audio/beep.wav; sourceTree = "<group>"; };
 		AC6F067C2059C83A0004C94A /* beep_final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_final.wav; path = ../audio/beep_final.wav; sourceTree = "<group>"; };
 		AC8AD5092049A9FA00B24553 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../audio; sourceTree = "<group>"; };
+		AC9D75D3206A945A00E6626B /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		ACC8B25E204B2A9300AD95C5 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		CC6083692B054324B555DF4C /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
@@ -602,6 +605,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AC9D75D3206A945A00E6626B /* assets */,
 				AC6F067C2059C83A0004C94A /* beep_final.wav */,
 				AC6F067A2059C8190004C94A /* beep.wav */,
 				AC8AD5092049A9FA00B24553 /* audio */,
@@ -1125,6 +1129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC8AD50B2049A9FA00B24553 /* audio in Resources */,
+				AC9D75D5206A945A00E6626B /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,6 +1137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9D75D4206A945A00E6626B /* assets in Resources */,
 				AC6F067B2059C8190004C94A /* beep.wav in Resources */,
 				AC6F067D2059C83A0004C94A /* beep_final.wav in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
