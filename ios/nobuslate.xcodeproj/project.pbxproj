@@ -44,6 +44,8 @@
 		AC9D75D4206A945A00E6626B /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AC9D75D3206A945A00E6626B /* assets */; };
 		AC9D75D5206A945A00E6626B /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AC9D75D3206A945A00E6626B /* assets */; };
 		ACC8B28A204B2AC700AD95C5 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC8B289204B2A9300AD95C5 /* libRNSound.a */; };
+		ACFBE06920718446001870E1 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFBE067207181FE001870E1 /* libBugsnagReactNative.a */; };
+		ACFBE07220718D91001870E1 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFBE07120718D83001870E1 /* libReactNativeConfig.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		FF3FFAFE7EBB48A389063E46 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55931722ECB3487D829B911F /* libRCTOrientation.a */; };
 /* End PBXBuildFile section */
@@ -329,6 +331,20 @@
 			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
 			remoteInfo = RNSound;
 		};
+		ACFBE066207181FE001870E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACFBE060207181FE001870E1 /* BugsnagReactNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8AD256131D6DE5F600C7D842;
+			remoteInfo = BugsnagReactNative;
+		};
+		ACFBE07020718D83001870E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACFBE06C20718D83001870E1 /* ReactNativeConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB2648DF1C7BE17A00B8F155;
+			remoteInfo = ReactNativeConfig;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -370,6 +386,8 @@
 		AC8AD5092049A9FA00B24553 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = ../audio; sourceTree = "<group>"; };
 		AC9D75D3206A945A00E6626B /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		ACC8B25E204B2A9300AD95C5 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		ACFBE060207181FE001870E1 /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
+		ACFBE06C20718D83001870E1 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		CC6083692B054324B555DF4C /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -387,6 +405,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACFBE07220718D91001870E1 /* libReactNativeConfig.a in Frameworks */,
+				ACFBE06920718446001870E1 /* libBugsnagReactNative.a in Frameworks */,
 				ACC8B28A204B2AC700AD95C5 /* libRNSound.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -575,6 +595,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				ACFBE06C20718D83001870E1 /* ReactNativeConfig.xcodeproj */,
+				ACFBE060207181FE001870E1 /* BugsnagReactNative.xcodeproj */,
 				ACC8B25E204B2A9300AD95C5 /* RNSound.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -652,6 +674,22 @@
 			isa = PBXGroup;
 			children = (
 				ACC8B289204B2A9300AD95C5 /* libRNSound.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACFBE061207181FE001870E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACFBE067207181FE001870E1 /* libBugsnagReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACFBE06D20718D83001870E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACFBE07120718D83001870E1 /* libReactNativeConfig.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -781,6 +819,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = ACFBE061207181FE001870E1 /* Products */;
+					ProjectRef = ACFBE060207181FE001870E1 /* BugsnagReactNative.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -831,6 +873,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = ACFBE06D20718D83001870E1 /* Products */;
+					ProjectRef = ACFBE06C20718D83001870E1 /* ReactNativeConfig.xcodeproj */;
 				},
 				{
 					ProductGroup = ACC8B25F204B2A9300AD95C5 /* Products */;
@@ -1114,6 +1160,20 @@
 			remoteRef = ACC8B288204B2A9300AD95C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		ACFBE067207181FE001870E1 /* libBugsnagReactNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBugsnagReactNative.a;
+			remoteRef = ACFBE066207181FE001870E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ACFBE07120718D83001870E1 /* libReactNativeConfig.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeConfig.a;
+			remoteRef = ACFBE07020718D83001870E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1323,8 +1383,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/**",
+					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa",
 				);
 				INFOPLIST_FILE = nobuslate/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1346,8 +1410,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/**",
+					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa",
 				);
 				INFOPLIST_FILE = nobuslate/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

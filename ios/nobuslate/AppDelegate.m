@@ -13,6 +13,7 @@
 #import <React/RCTRootView.h>
 
 #import "Orientation.h"
+#import "BugsnagReactNative.h"
 
 @implementation AppDelegate
 
@@ -33,6 +34,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [BugsnagReactNative start];
   return YES;
 }
 
