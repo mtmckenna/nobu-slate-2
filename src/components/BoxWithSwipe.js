@@ -19,6 +19,7 @@ import {
 } from '../swipe-functions';
 
 import { WHITE } from '../colors';
+import colorsType from '../types';
 
 export default function BoxWithSwipeWrapper(field) {
   const BoxWithSwipe = class extends Component {
@@ -47,8 +48,12 @@ export default function BoxWithSwipeWrapper(field) {
     render() {
       return (
         <View style={styles.container} {...this._panResponder.panHandlers}>
-          <Box testID={field} label={stringWithFirstLetterCapitalized(field)} {...this.props}>
-            <Text testID={`${field}Text`} style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'} {this.props.value} {'\u00a0'}</Text>
+          <Box
+            testID={field}
+            label={stringWithFirstLetterCapitalized(field)}
+            colors={this.props.colors}
+          >
+            <Text testID={`${field}Text`} style={[styles.text, { color: this.props.colors.fontColor }]} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'} {this.props.value} {'\u00a0'}</Text>
           </Box>
         </View>
       );
@@ -58,7 +63,8 @@ export default function BoxWithSwipeWrapper(field) {
   BoxWithSwipe.propTypes = {
     edit: PropTypes.func.isRequired,
     onSwipe: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.string.isRequired,
+    colors: colorsType.isRequired
   };
 
   return BoxWithSwipe;

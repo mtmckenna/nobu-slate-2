@@ -7,6 +7,7 @@ import {
 
 import Box from './Box';
 import { WHITE } from '../colors';
+import colorsType from '../types';
 
 const leftPad = require('left-pad');
 
@@ -28,15 +29,19 @@ export default class DateTimeBox extends Component {
 
   render() {
     return (
-      <Box testID="dateTime" label="Date/Time">
+      <Box testID="dateTime" label="Date/Time" {...this.props}>
         <View style={styles.textContainer}>
-          <Text style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'}{formattedDate(this.state.date)}{'\u00a0'}</Text>
-          <Text style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'}{formattedTime(this.state.date)}{'\u00a0'}</Text>
+          <Text style={[styles.text, { color: this.props.colors.fontColor }]} adjustsFontSizeToFit numberOfLines={1} colors>{'\u00a0'}{formattedDate(this.state.date)}{'\u00a0'}</Text>
+          <Text style={[styles.text, { color: this.props.colors.fontColor }]} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'}{formattedTime(this.state.date)}{'\u00a0'}</Text>
         </View>
       </Box>
     );
   }
 }
+
+DateTimeBox.propTypes = {
+  colors: colorsType.isRequired
+};
 
 const styles = StyleSheet.create({
   textContainer: {

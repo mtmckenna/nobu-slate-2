@@ -6,10 +6,29 @@ import EditBox from './EditBox';
 import Beeper from '../beeper';
 import { saveSlateProps, loadSlateProps } from '../slate-storage';
 import {
+  BLACK,
   GREEN,
   RED,
   WHITE
 } from '../colors';
+
+const MARK_GREEN = {
+  backgroundColor: BLACK,
+  foregroundColor: GREEN,
+  fontColor: BLACK
+};
+
+const MARK_RED = {
+  backgroundColor: BLACK,
+  foregroundColor: RED,
+  fontColor: WHITE
+};
+
+const MARK_WHITE = {
+  backgroundColor: WHITE,
+  foregroundColor: BLACK,
+  fontColor: WHITE
+};
 
 const BEEP_TIME = 500;
 
@@ -18,7 +37,7 @@ export default class App extends React.Component {
     super(props);
     this.beeper = new Beeper();
     this.state = {
-      backgroundColor: WHITE,
+      colors: MARK_WHITE,
       countingDown: false,
       editing: null,
       slateProps: {
@@ -44,17 +63,17 @@ export default class App extends React.Component {
     this.setState({ countingDown: true });
 
     this.beeper.beep();
-    this.setState(backgroundStyle(RED));
+    this.setState({ colors: MARK_RED });
 
-    setTimeout(() => this.setState(backgroundStyle(WHITE)), 1 * BEEP_TIME);
+    setTimeout(() => this.setState({ colors: MARK_WHITE }), 1 * BEEP_TIME);
 
     setTimeout(() => {
-      this.setState(backgroundStyle(GREEN));
+      this.setState({ colors: MARK_GREEN });
       this.beeper.beepFinal();
     }, 2 * BEEP_TIME);
 
     setTimeout(() => {
-      this.setState(backgroundStyle(WHITE));
+      this.setState({ colors: MARK_WHITE });
       this.setState({ countingDown: false });
     }, 3 * BEEP_TIME);
   }
@@ -82,7 +101,7 @@ export default class App extends React.Component {
       />);
     } else {
       component = (<Slate
-        backgroundColor={this.state.backgroundColor}
+        colors={this.state.colors}
         edit={this.edit}
         onUpdate={this.updateValue}
         mark={this.mark}
@@ -94,6 +113,3 @@ export default class App extends React.Component {
   }
 }
 
-function backgroundStyle(color) {
-  return { backgroundColor: color };
-}

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import EditableText from './EditableText';
+import colorsType from '../types';
 
 export default function AudioChannel(props) {
   return (
@@ -12,6 +13,7 @@ export default function AudioChannel(props) {
         field={props.field}
         adjustsFontSizeToFit
         numberOfLines={1}
+        colors={props.colors}
       >
         {props.children}
       </EditableText>
@@ -22,7 +24,8 @@ export default function AudioChannel(props) {
 AudioChannel.propTypes = {
   onPress: PropTypes.func.isRequired,
   field: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  colors: colorsType.isRequired
 };
 
 const styles = StyleSheet.create({

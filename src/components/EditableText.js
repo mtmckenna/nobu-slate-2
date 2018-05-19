@@ -2,11 +2,17 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { WHITE, BLACK } from '../colors';
+import colorsType from '../types';
 
 export default function EditableText(props) {
   return (
     <Text
-      style={styles.text}
+      style={[styles.text,
+        {
+          color: props.colors.fontColor,
+          backgroundColor: props.colors.foregroundColor
+        }
+      ]}
       testID={`${props.field}Text`}
       onPress={() => props.onPress(props.field)}
       adjustsFontSizeToFit
@@ -20,7 +26,8 @@ export default function EditableText(props) {
 EditableText.propTypes = {
   field: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  colors: colorsType.isRequired
 };
 
 const styles = StyleSheet.create({
