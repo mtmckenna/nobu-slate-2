@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   audioRow: {
     flexDirection: 'row',
     flex: 1,
-    flexBasis: 'auto'
   }
 });
 

@@ -1,4 +1,6 @@
+// The weird {'\u00a0'} thing is because of https://github.com/facebook/react-native/issues/16124
 import React, { Component } from 'react';
+
 import {
   PanResponder,
   StyleSheet,
@@ -46,7 +48,7 @@ export default function BoxWithSwipeWrapper(field) {
       return (
         <View style={styles.container} {...this._panResponder.panHandlers}>
           <Box testID={field} label={stringWithFirstLetterCapitalized(field)} {...this.props}>
-            <Text testID={`${field}Text`}style={styles.text} adjustsFontSizeToFit>{this.props.value}</Text>
+            <Text testID={`${field}Text`} style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'} {this.props.value} {'\u00a0'}</Text>
           </Box>
         </View>
       );
@@ -70,9 +72,10 @@ const styles = StyleSheet.create({
 
   text: {
     flex: 1,
+    fontFamily: 'Helvetica Neue',
     color: WHITE,
-    textAlign: 'center',
-    fontSize: 60
+    fontSize: 1000,
+    textAlignVertical: 'center'
   }
 });
 

@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: BLACK,
     color: WHITE,
     height: '100%',
+    fontFamily: 'Helvetica Neue',
     fontSize: 50
   }
 });

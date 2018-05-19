@@ -10,8 +10,9 @@ export default function EditableText(props) {
       testID={`${props.field}Text`}
       onPress={() => props.onPress(props.field)}
       adjustsFontSizeToFit
+      numberOfLines={1}
     >
-      {props.children}
+      {'\u00a0'} {props.children} {'\u00a0'}
     </Text>
   );
 }
@@ -26,7 +27,8 @@ const styles = StyleSheet.create({
   text: {
     backgroundColor: BLACK,
     color: WHITE,
-    fontSize: 30,
-    flexGrow: 1
+    fontSize: 1000,
+    fontFamily: 'Helvetica Neue',
+    flex: 1
   },
 });

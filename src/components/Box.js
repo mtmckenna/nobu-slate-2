@@ -11,7 +11,7 @@ import { BLACK, WHITE } from '../colors';
 export default function Box(props) {
   return (
     <View style={styles.container} testID={props.testID}>
-      <Text style={styles.label}>{props.label}</Text>
+      <Text style={styles.label} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'} {props.label} {'\u00a0'}</Text>
       <View style={styles.textContainer}>
         {props.children}
       </View>
@@ -34,8 +34,12 @@ const styles = StyleSheet.create({
   },
 
   label: {
+    fontFamily: 'Helvetica Neue',
     color: WHITE,
-    padding: 5
+    padding: 5,
+    fontSize: 1000,
+    flexGrow: 0.15,
+    flex: 1
   },
 
   textContainer: {

@@ -11,6 +11,7 @@ export default function AudioChannel(props) {
         onPress={props.onPress}
         field={props.field}
         adjustsFontSizeToFit
+        numberOfLines={1}
       >
         {props.children}
       </EditableText>

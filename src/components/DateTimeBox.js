@@ -30,8 +30,8 @@ export default class DateTimeBox extends Component {
     return (
       <Box testID="dateTime" label="Date/Time">
         <View style={styles.textContainer}>
-          <Text style={styles.text} adjustsFontSizeToFit>{formattedDate(this.state.date)}</Text>
-          <Text style={styles.text} adjustsFontSizeToFit>{formattedTime(this.state.date)}</Text>
+          <Text style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'}{formattedDate(this.state.date)}{'\u00a0'}</Text>
+          <Text style={styles.text} adjustsFontSizeToFit numberOfLines={1}>{'\u00a0'}{formattedTime(this.state.date)}{'\u00a0'}</Text>
         </View>
       </Box>
     );
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     color: WHITE,
     textAlign: 'left',
     textAlignVertical: 'center',
-    fontSize: 30,
+    fontSize: 1000,
+    fontFamily: 'Helvetica Neue',
     padding: 5
   }
 });
